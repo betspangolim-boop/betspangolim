@@ -1,39 +1,177 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>BetStats Arena Pro</title>
-<style>
-:root{--bg:#07111f;--panel:#0e1d33;--panel2:#132a49;--card:#10243f;--text:#eff7ff;--muted:#9db3cc;--line:rgba(255,255,255,.1);--green:#35d07f;--red:#ff6370;--yellow:#ffcc66;--blue:#58a6ff;--orange:#ff9f43}*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(135deg,#06101e,#07111f 42%,#0a1627);color:var(--text)}header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;background:rgba(8,19,34,.9);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:9;backdrop-filter:blur(10px)}h1{margin:0;font-size:25px;letter-spacing:-.03em}.sub{color:var(--muted);font-size:13px;margin-top:4px}.btn,input,select{border:1px solid var(--line);border-radius:13px;padding:11px 12px;background:rgba(255,255,255,.07);color:var(--text);outline:none}select option{background:#10243f}.btn{cursor:pointer;background:linear-gradient(135deg,#1f8cff,#35d07f);color:#061421;border:0;font-weight:800}.btn2{background:rgba(255,255,255,.08);color:var(--text);border:1px solid var(--line)}.layout{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 72px)}aside{background:rgba(13,27,47,.82);border-right:1px solid var(--line);padding:18px;position:sticky;top:72px;height:calc(100vh - 72px)}.nav button{width:100%;display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;text-align:left;background:transparent;color:var(--text);border:1px solid transparent;border-radius:14px;padding:13px;cursor:pointer;font-weight:700}.nav button.active,.nav button:hover{background:rgba(88,166,255,.13);border-color:rgba(88,166,255,.27)}main{padding:20px;display:grid;gap:16px}.toolbar{display:grid;grid-template-columns:1.4fr .9fr .9fr .9fr auto;gap:10px}.card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:22px;padding:17px;box-shadow:0 18px 50px rgba(0,0,0,.23)}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.metric small,.muted{color:var(--muted)}.metric strong{display:block;font-size:30px;margin:7px 0 4px}.head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}.head h2{margin:0;font-size:20px}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;background:rgba(255,255,255,.08);border:1px solid var(--line);font-size:12px}.green{color:var(--green)}.red{color:var(--red)}.yellow{color:var(--yellow)}.blue{color:var(--blue)}.orange{color:var(--orange)}.leagueGroup{margin-bottom:14px}.leagueTitle{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-radius:15px;background:rgba(88,166,255,.12);border:1px solid rgba(88,166,255,.24);margin-bottom:9px}.match{display:grid;grid-template-columns:92px 1fr 76px 1fr 150px;gap:10px;align-items:center;background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:8px}.time{color:var(--muted);font-size:13px}.team{display:flex;align-items:center;gap:9px}.team.away{justify-content:flex-end;text-align:right}.logo{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#58a6ff,#35d07f);color:#061421;font-weight:900;overflow:hidden;flex:0 0 30px}.logo img{width:100%;height:100%;object-fit:contain;background:#fff}.score{text-align:center;font-size:22px;font-weight:900}.matchActions{display:flex;justify-content:flex-end;gap:7px}.mini{font-size:12px;padding:8px 9px}.liveDot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;margin-right:6px;box-shadow:0 0 12px var(--green)}.detail{display:grid;grid-template-columns:1fr 1fr;gap:12px}.statline{margin:12px 0}.statTop{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}.bar{height:9px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin-top:7px}.bar>div{height:100%;background:linear-gradient(90deg,#35d07f,#58a6ff)}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid var(--line);padding:10px 7px;text-align:left;font-size:14px}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.hidden{display:none!important}.configBox{display:grid;grid-template-columns:1fr auto;gap:10px}.notice{background:rgba(255,204,102,.1);border-left:4px solid var(--yellow);padding:12px;border-radius:13px;color:#ffe4a6;line-height:1.45;font-size:13px}.empty{padding:30px;text-align:center;color:var(--muted)}@media(max-width:1000px){.layout{grid-template-columns:1fr}aside{position:static;height:auto}.toolbar,.grid4,.grid3,.grid2,.detail{grid-template-columns:1fr}.match{grid-template-columns:1fr;text-align:center}.team,.team.away{justify-content:center;text-align:center}.matchActions{justify-content:center}}
-</style>
-</head>
-<body>
-<header><div><h1>BetStats Arena Pro</h1><div class="sub">Jogos ao vivo, próximos jogos, campeonatos, estatísticas e odds</div></div><div><button class="btn" onclick="sincronizar()">Sincronizar agora</button></div></header>
-<div class="layout"><aside><div class="nav"><button class="active" onclick="view('dashboard',this)">Dashboard <span>⌂</span></button><button onclick="view('live',this)">Ao vivo <span id="navLive">0</span></button><button onclick="view('matches',this)">Todos os jogos <span id="navMatches">0</span></button><button onclick="view('teams',this)">Times <span>⌕</span></button><button onclick="view('odds',this)">Odds <span>$</span></button><button onclick="view('settings',this)">API <span>⚙</span></button></div><div class="notice">Para aparecer todos os jogos reais, o backend precisa estar com API_FOOTBALL_KEY configurada no Render.</div></aside><main>
-<section class="card toolbar"><input id="search" placeholder="Buscar time, campeonato ou país. Ex: El Geish, Wadi Degla, Egypt" oninput="render()"><select id="status" onchange="render()"><option value="all">Todos os status</option><option value="live">Ao vivo</option><option value="future">Futuros</option><option value="past">Finalizados</option></select><select id="cat" onchange="render()"><option value="all">Todas as divisões</option><option value="nacional">Nacionais</option><option value="internacional">Internacionais</option><option value="copa-nacional">Copas nacionais</option><option value="copa-internacional">Copas internacionais</option></select><select id="sort" onchange="render()"><option value="liga">Agrupar por campeonato</option><option value="hora">Ordenar por horário</option></select><button class="btn btn2" onclick="limpar()">Limpar</button></section>
-<section id="dashboard" class="page"><div class="grid4" id="metrics"></div><div class="grid2"><div class="card"><div class="head"><h2>Ao vivo agora</h2><span class="badge green" id="liveCountLabel">0 jogos</span></div><div id="homeLive"></div></div><div class="card"><div class="head"><h2>Detalhe do jogo</h2><span class="badge" id="detailLabel">selecione</span></div><div id="matchDetail" class="empty">Clique em “Abrir” em qualquer jogo.</div></div></div></section>
-<section id="live" class="page hidden"><div class="card"><div class="head"><h2>Jogos ao vivo</h2><span class="badge green" id="liveTotal">0</span></div><div id="liveList"></div></div></section>
-<section id="matches" class="page hidden"><div class="card"><div class="head"><h2>Todos os jogos</h2><span class="badge" id="matchTotal">0</span></div><div id="matchList"></div></div></section>
-<section id="teams" class="page hidden"><div class="card"><div class="head"><h2>Times encontrados</h2><span class="badge" id="teamTotal">0</span></div><div id="teamList"></div></div></section>
-<section id="odds" class="page hidden"><div class="card"><div class="head"><h2>Odds e valor</h2><span class="badge">Exchange</span></div><table><thead><tr><th>Jogo</th><th>Mercado</th><th>Back Casa</th><th>Lay Casa</th><th>Odd justa</th><th>EV</th></tr></thead><tbody id="oddsList"></tbody></table></div></section>
-<section id="settings" class="page hidden"><div class="card"><div class="head"><h2>Conectar backend</h2><span class="badge" id="apiMode">não conectado</span></div><div class="configBox"><input id="apiBase" placeholder="https://betspangolim.onrender.com"><button class="btn" onclick="saveApi()">Salvar API</button></div><br><button class="btn" onclick="sincronizar()">Testar sincronização</button><br><br><div class="notice">Cole a URL base do Render. Exemplo: https://betspangolim.onrender.com. Depois clique em sincronizar.</div><br><pre id="debug" class="card" style="white-space:pre-wrap;color:var(--muted);margin:0"></pre></div></section>
-</main></div>
 <script>
-let apiBase=localStorage.getItem('apiBase')||'https://betspangolim.onrender.com';let data={jogos:[],times:[],odds:[],modo:'não sincronizado'};let selected=null;apiBaseEl();function apiBaseEl(){setTimeout(()=>{let el=document.getElementById('apiBase');if(el)el.value=apiBase},0)}
-function view(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
-function saveApi(){apiBase=document.getElementById('apiBase').value.trim().replace(/\/$/,'');localStorage.setItem('apiBase',apiBase);alert('API salva. Clique em Testar sincronização.')}function limpar(){search.value='';status.value='all';cat.value='all';sort.value='liga';render()}
-async function sincronizar(){try{apiBase=localStorage.getItem('apiBase')||apiBase;if(!apiBase)return alert('Informe a URL da API em API.');let r=await fetch(apiBase.replace(/\/$/,'')+'/api/dados?t='+Date.now());let j=await r.json();data=j;document.getElementById('apiMode').textContent=j.modo||'conectado';document.getElementById('debug').textContent=JSON.stringify({modo:j.modo,atualizadoEm:j.atualizadoEm,totalJogos:j.jogos?.length,erro:j.erro||null},null,2);render();}catch(e){alert('Erro ao buscar backend: '+e.message)}}
-function norm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}function filtered(){let q=norm(search.value),st=status.value,c=cat.value;return (data.jogos||[]).filter(j=>(!q||norm(j.casa+' '+j.fora+' '+j.camp+' '+j.pais).includes(q))&&(st=='all'||j.status==st)&&(c=='all'||j.cat==c))}
-function logo(name,url){return '<span class="logo">'+(url?'<img src="'+url+'">':String(name||'?')[0])+'</span>'}function stLabel(j){if(j.status=='live')return '<span class="green"><span class="liveDot"></span>AO VIVO '+(j.min?j.min+'\'':'')+'</span>';if(j.status=='past')return '<span class="yellow">FINALIZADO</span>';return '<span class="blue">FUTURO</span>'}
-function matchHTML(j){return '<div class="match"><div class="time">'+stLabel(j)+'<br>'+String(j.data||'').slice(11,16)+'</div><div class="team">'+logo(j.casa,j.logos?.casa)+'<strong>'+j.casa+'</strong></div><div class="score">'+j.placar+'</div><div class="team away"><strong>'+j.fora+'</strong>'+logo(j.fora,j.logos?.fora)+'</div><div class="matchActions"><button class="btn mini" onclick="openMatch(\''+j.id+'\')">Abrir</button></div></div>'}
-function groupHTML(list){if(!list.length)return '<div class="empty">Nenhum jogo encontrado. Sincronize a API ou limpe filtros.</div>';if(sort.value=='hora')return list.sort((a,b)=>String(a.data).localeCompare(String(b.data))).map(matchHTML).join('');let groups={};list.forEach(j=>{let k=(j.pais?j.pais+' • ':'')+j.camp;(groups[k]??=[]).push(j)});return Object.entries(groups).sort().map(([k,arr])=>'<div class="leagueGroup"><div class="leagueTitle"><strong>'+k+'</strong><span class="badge">'+arr.length+' jogos</span></div>'+arr.map(matchHTML).join('')+'</div>').join('')}
-function render(){let list=filtered();let live=(data.jogos||[]).filter(j=>j.status=='live');metrics.innerHTML='<div class="card metric"><small>Total de jogos</small><strong>'+((data.jogos||[]).length)+'</strong><span class="muted">backend</span></div><div class="card metric"><small>Ao vivo</small><strong class="green">'+live.length+'</strong><span class="muted">agora</span></div><div class="card metric"><small>Campeonatos</small><strong class="blue">'+new Set((data.jogos||[]).map(j=>j.camp)).size+'</strong><span class="muted">ligas/copas</span></div><div class="card metric"><small>Modo</small><strong class="yellow" style="font-size:20px">'+(data.modo||'-')+'</strong><span class="muted">fonte</span></div>';navLive.textContent=live.length;navMatches.textContent=(data.jogos||[]).length;liveCountLabel.textContent=live.length+' jogos';liveTotal.textContent=live.length;matchTotal.textContent=list.length;homeLive.innerHTML=groupHTML(live.slice(0,20));liveList.innerHTML=groupHTML(list.filter(j=>j.status=='live'));matchList.innerHTML=groupHTML(list);renderTeams();renderOdds();if(selected)renderDetail(selected)}
-function openMatch(id){selected=(data.jogos||[]).find(j=>j.id==id);renderDetail(selected)}function pctbar(label,a,b){let t=(a||0)+(b||0),p=t?Math.round(a/t*100):50;return '<div class="statline"><div class="statTop"><span>'+a+'</span><strong>'+label+'</strong><span>'+b+'</span></div><div class="bar"><div style="width:'+p+'%"></div></div></div>'}
-function renderDetail(j){if(!j)return;detailLabel.textContent=j.casa+' x '+j.fora;matchDetail.innerHTML='<div class="detail"><div class="card"><h2>'+j.casa+' x '+j.fora+'</h2><p class="muted">'+j.camp+' • '+j.pais+' • '+j.data+'</p><h1 style="text-align:center;font-size:42px">'+j.placar+'</h1><p style="text-align:center">'+stLabel(j)+'</p></div><div class="card"><h3>Leitura rápida</h3><p>Over 2.5: <b>'+j.stats.over25+'%</b></p><p>BTTS: <b>'+j.stats.btts+'%</b></p><p>1X2: <b>'+j.stats.casa+'/'+j.stats.empate+'/'+j.stats.fora+'</b></p><p>xG estimado: <b>'+j.xg[0]+' x '+j.xg[1]+'</b></p></div></div><div class="card" style="margin-top:12px"><h3>Estatísticas</h3>'+pctbar('Posse',j.stats.pos?.[0]||0,j.stats.pos?.[1]||0)+pctbar('Finalizações',j.stats.fin?.[0]||0,j.stats.fin?.[1]||0)+pctbar('No gol',j.stats.gol?.[0]||0,j.stats.gol?.[1]||0)+pctbar('Escanteios',j.stats.esc?.[0]||0,j.stats.esc?.[1]||0)+'</div>'}
-function renderTeams(){let q=norm(search.value);let teams=(data.times||[]).filter(t=>!q||norm(t.nome+' '+t.pais+' '+(t.camp||[]).join(' ')).includes(q));teamTotal.textContent=teams.length;teamList.innerHTML=teams.map(t=>'<div class="match"><div>'+logo(t.nome)+'</div><div><strong>'+t.nome+'</strong><br><span class="muted">'+t.pais+'</span></div><div class="score">'+t.forma+'%</div><div class="muted">'+(t.camp||[]).join(', ')+'</div><div></div></div>').join('')||'<div class="empty">Nenhum time encontrado.</div>'}
-function renderOdds(){oddsList.innerHTML=(data.odds||[]).map(o=>{let j=(data.jogos||[]).find(x=>x.id==o.jogo)||{};let prob=(j.stats?.casa||50)/100,justa=1/prob,ev=prob*(o.back?.casa||0)-1;return '<tr><td>'+((j.casa&&j.fora)?j.casa+' x '+j.fora:o.jogo)+'</td><td>'+o.mercado+'</td><td>'+o.back.casa+'</td><td>'+o.lay.casa+'</td><td>'+justa.toFixed(2)+'</td><td class="'+(ev>=0?'green':'red')+'">'+(ev*100).toFixed(1)+'%</td></tr>'}).join('')}
+
+// ===============================
+// BETSTATS AUTO LIVE SYNC SYSTEM
+// ===============================
+
+let sincronizando = false;
+let ultimaAtualizacao = null;
+
+// sincronização principal
+async function sincronizar() {
+
+    if (sincronizando) return;
+
+    sincronizando = true;
+
+    try {
+
+        const apiBase = localStorage.getItem("apiBase");
+
+        if (!apiBase) {
+            console.log("API não configurada");
+            sincronizando = false;
+            return;
+        }
+
+        // indicador visual
+        const btn = document.querySelector(".sync");
+        if (btn) {
+            btn.innerText = "Atualizando...";
+            btn.style.opacity = "0.7";
+        }
+
+        // timestamp para evitar cache
+        const timestamp = new Date().getTime();
+
+        // buscar backend
+        const response = await fetch(
+            apiBase + "/api/dados?t=" + timestamp,
+            {
+                cache: "no-store",
+                headers: {
+                    "Cache-Control": "no-cache"
+                }
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Erro backend");
+        }
+
+        const json = await response.json();
+
+        // atualizar memória
+        dados = json;
+
+        // renderizar sistema
+        render();
+
+        // salvar hora
+        ultimaAtualizacao = new Date();
+
+        // mostrar hora atualização
+        atualizarRodape();
+
+        console.log("Atualizado:", ultimaAtualizacao);
+
+    } catch (e) {
+
+        console.log("Erro sincronização:", e);
+
+    } finally {
+
+        sincronizando = false;
+
+        const btn = document.querySelector(".sync");
+
+        if (btn) {
+            btn.innerText = "Sincronizar agora";
+            btn.style.opacity = "1";
+        }
+
+    }
+
+}
+
+// ===============================
+// STATUS RODAPÉ
+// ===============================
+
+function atualizarRodape() {
+
+    let status = document.getElementById("liveStatus");
+
+    if (!status) {
+
+        status = document.createElement("div");
+
+        status.id = "liveStatus";
+
+        status.style.position = "fixed";
+        status.style.right = "15px";
+        status.style.bottom = "15px";
+        status.style.background = "#07111f";
+        status.style.border = "1px solid rgba(255,255,255,.1)";
+        status.style.padding = "10px 15px";
+        status.style.borderRadius = "10px";
+        status.style.color = "#35d07f";
+        status.style.fontSize = "13px";
+        status.style.zIndex = "9999";
+
+        document.body.appendChild(status);
+
+    }
+
+    status.innerHTML = `
+        🔴 AO VIVO<br>
+        Atualizado: ${ultimaAtualizacao.toLocaleTimeString()}
+    `;
+
+}
+
+// ===============================
+// AUTO UPDATE 5 SEGUNDOS
+// ===============================
+
+// sincroniza ao abrir
 sincronizar();
+
+// atualiza a cada 5 segundos
+setInterval(() => {
+
+    sincronizar();
+
+}, 5000);
+
+// ===============================
+// ATUALIZAÇÃO AO VOLTAR ABA
+// ===============================
+
+document.addEventListener("visibilitychange", () => {
+
+    if (!document.hidden) {
+
+        sincronizar();
+
+    }
+
+});
+
+// ===============================
+// RECONECTAR INTERNET
+// ===============================
+
+window.addEventListener("online", () => {
+
+    sincronizar();
+
+});
+
+// ===============================
+// HOT RELOAD JOGOS AO VIVO
+// ===============================
+
+setInterval(() => {
+
+    if (dados && dados.jogos) {
+
+        const live = dados.jogos.filter(j => j.status === "live");
+
+        document.title = `(${live.length}) Jogos Ao Vivo • BetStats`;
+
+    }
+
+}, 2000);
+
 </script>
-</body>
-</html>
